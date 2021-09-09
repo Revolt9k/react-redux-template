@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "outDir": "./public/dist",
+    "jsx": "react",
+    "removeComments": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["src/components/*"],
+      "reducers/*": ["src/store/reducers/*"],
+      "store/*": ["src/store/*"],
+      "image/*": ["src/image/*"],
+      "scene/*": ["src/scene/*"],
+      "api/*": ["src/api/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "./custom.d.ts"],
+  "exclude": ["node_modules/"]
+}
