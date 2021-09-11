@@ -1,22 +1,20 @@
 ## React-redux-template
 
-<p>
 This template uses:
-     * React
-     * Redux
-     * TypeScript
-     * Redux-thunk
-     * Scss
-     * React-modal
-</p>
 
-<p>
+- React
+- Redux
+- TypeScript
+- Redux-thunk
+- Scss
+- React-modal
+
 Webpack build includes:
-     * Aliases
-     * Chunk splitting
-     * Hot reload
-     * Analyzing bundle size tool
-</p>
+
+- Aliases
+- Chunk splitting
+- Hot reload
+- Analyzing bundle size tool
 
 <p>
 Includes airbnb eslint setup and basic prettier config.
