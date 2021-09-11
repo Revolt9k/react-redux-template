@@ -56,16 +56,16 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: require.resolve("ts-loader"),
+            loader: require.resolve("ts-loader")
             // disable options when production
-            options: isDevelopment && {
-              getCustomTransformers: () => ({
-                before: isDevelopment ? [ReactRefreshTypeScript()] : []
-              }),
-              // `ts-loader` does not work with HMR unless `transpileOnly` is used.
-              // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
-              transpileOnly: isDevelopment
-            }
+            // options: {
+            //   getCustomTransformers: () => ({
+            //     before: isDevelopment ? [ReactRefreshTypeScript()] : []
+            //   }),
+            //   // `ts-loader` does not work with HMR unless `transpileOnly` is used.
+            //   // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
+            //   transpileOnly: isDevelopment
+            // }
           }
         ],
         exclude: "/node_modules/"
@@ -108,7 +108,7 @@ module.exports = {
     // writeToDisk: true,
     historyApiFallback: true,
     watchContentBase: true,
-    hot: true
+    hotOnly: true
   },
   output: {
     filename: "[name]-[contenthash].js",
