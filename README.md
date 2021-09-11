@@ -10,5 +10,7 @@ Also has basic prettier config.
 Template have following PageSpeed Insights test results.
 
 <details><summary>Show performance</summary>
+
 ![PageSpeed Insights](/public/performance.png)
+
 </details>
