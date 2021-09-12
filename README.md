@@ -38,7 +38,7 @@ _<details><summary> Show performance</summary>_
 
 Three is already initialized store with example reducer and some basic components.
 
-##### <details><summary> Troubleshooting </summary>
+_<details><summary> Troubleshooting </summary>_
 
 `Uncaught ReferenceError: $RefreshSig$ is not defined` on `yarn prod`
 
