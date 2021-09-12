@@ -56,16 +56,16 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: require.resolve("ts-loader")
-            // disable options when production
-            // options: {
-            //   getCustomTransformers: () => ({
-            //     before: isDevelopment ? [ReactRefreshTypeScript()] : []
-            //   }),
-            //   // `ts-loader` does not work with HMR unless `transpileOnly` is used.
-            //   // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
-            //   transpileOnly: isDevelopment
-            // }
+            loader: require.resolve("ts-loader"),
+            // disable options (comment lines 61-69) when production
+            options: {
+              getCustomTransformers: () => ({
+                before: isDevelopment ? [ReactRefreshTypeScript()] : []
+              }),
+              // `ts-loader` does not work with HMR unless `transpileOnly` is used.
+              // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
+              transpileOnly: isDevelopment
+            }
           }
         ],
         exclude: "/node_modules/"

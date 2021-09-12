@@ -4,7 +4,6 @@
   "description": "Project react app",
   "scripts": {
     "start": "webpack serve",
-    "dev": "webpack serve --hot",
     "prod": "webpack serve --mode=production",
     "build": "webpack --mode=production",
     "lint": "eslint src/**/*.ts{,x}"
