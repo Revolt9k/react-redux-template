@@ -36,7 +36,7 @@ _<details><summary> Show performance</summary>_
 
 1. `yarn start` will run project on localhost:3000.
 
-Three is already initialized store with example reducer and some basic components.
+There is already initialized store with example reducer and some basic components.
 
 _<details><summary> Troubleshooting </summary>_
 
