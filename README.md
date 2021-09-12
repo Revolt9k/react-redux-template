@@ -22,7 +22,7 @@
 
 _<details><summary> Show performance</summary>_
 
-![PageSpeed Insights](/public/performance.png)
+![PageSpeed Insights](https://i.postimg.cc/bvCgsJHb/performance.png)
 
 </details>
 
