@@ -42,7 +42,7 @@ _<details><summary> Troubleshooting </summary>_
 
 `Uncaught ReferenceError: $RefreshSig$ is not defined` on `yarn prod`
 
-Don't forget to disable options (comment lines 61-68) in `webpack.config.js` to disable hot reload module.
+If you want to use production mode don't forget to disable hot reload module (comment lines 61-68) in `webpack.config.js` .
 
 Related to https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/92.
 
