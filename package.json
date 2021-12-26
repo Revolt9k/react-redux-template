@@ -4,9 +4,11 @@
   "description": "Project react app",
   "scripts": {
     "start": "webpack serve",
-    "prod": "webpack serve --mode=production",
-    "build": "webpack --mode=production",
-    "lint": "eslint src/**/*.ts{,x}"
+    "prod": "NODE_ENV=production webpack serve --mode=production",
+    "build": "NODE_ENV=production webpack --mode=production",
+    "lint": "eslint src/**/*.ts{,x}",
+    "prepare": "husky install",
+    "prettier": "prettier --write ."
   },
   "author": "Alekseev K.A.",
   "license": "ISC",
@@ -23,6 +25,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "husky": "^7.0.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@types/react": "^16.8.24",
     "@types/react-dom": "^16.0.5",
