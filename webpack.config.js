@@ -83,7 +83,8 @@ module.exports = {
             loader: "sass-loader",
             options: {
               sourceMap: true,
-              implementation: require("sass")
+              implementation: require("sass"),
+              prependData: `@import "./src/Variables.scss";` // For scss modules
             }
           }
         ]
@@ -105,7 +106,7 @@ module.exports = {
   devServer: {
     contentBase: "./public",
     port: 3000,
-    // writeToDisk: true,
+    writeToDisk: true,
     historyApiFallback: true,
     watchContentBase: true,
     hotOnly: true
