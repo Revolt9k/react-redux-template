@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const Main = React.lazy(
   () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ "scene/Main/Main")
@@ -15,17 +15,17 @@ const NotFound = React.lazy(
     import(/* webpackChunkName: "NotFound", webpackPrefetch: true */ "components/NotFound/NotFound")
 );
 
-const Routes: React.FC = (): React.ReactElement => {
+const RoutesContainer: React.FC = (): React.ReactElement => {
   return (
     <Suspense fallback={<div>loader</div>}>
-      <Switch>
-        <Route exact path='/' component={Main} />
-        <Route exact path='/main' component={Main} />
-        <Route exact path='/secondary' component={Secondary} />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/main' element={<Main />} />
+        <Route path='/secondary' element={<Secondary />} />
+        <Route element={<NotFound />} />
+      </Routes>
     </Suspense>
   );
 };
 
-export default Routes;
+export default RoutesContainer;

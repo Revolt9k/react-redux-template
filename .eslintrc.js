@@ -7,10 +7,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended"
   ],
-  plugins: [
-    "react", 
-    "prettier"
-  ],
+  plugins: ["react", "prettier"],
   env: {
     browser: true,
     es6: true
@@ -34,7 +31,9 @@ module.exports = {
     "no-param-reassign": "warn",
     "no-shadow": "warn",
     "@typescript-eslint/no-shadow": "warn",
-    "import/prefer-default-export": "warn",
+    "@typescript-eslint/default-param-last": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
     "react/prop-types": "off",
     "react/jsx-filename-extension": "warn",
     "react/react-in-jsx-scope": "warn",

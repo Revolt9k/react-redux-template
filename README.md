@@ -22,7 +22,7 @@
 
 _<details><summary> Show performance</summary>_
 
-![PageSpeed Insights](https://i.postimg.cc/bvCgsJHb/performance.png)
+![PageSpeed Insights](https://i.postimg.cc/tTchymGt/performance.jpg)](https://postimg.cc/wyhtQ2v7)
 
 </details>
 
@@ -40,10 +40,6 @@ There is already initialized store with example reducer and some basic component
 
 _<details><summary> Troubleshooting </summary>_
 
-`Uncaught ReferenceError: $RefreshSig$ is not defined` on `yarn prod`
-
-If you want to use production mode don't forget to disable hot reload module (comment lines 61-68) in `webpack.config.js` .
-
-Related to https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/92.
+Fell free to make a PR or contact me if you got any problems.
 
 </details>

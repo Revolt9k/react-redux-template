@@ -1,6 +1,5 @@
 import { AppInitialStateType } from "reducers/AppReducer/types";
 import { Action, applyMiddleware, combineReducers, createStore } from "redux";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import thunkMiddleware, { ThunkAction } from "redux-thunk";
 import AppReducer from "./reducers/AppReducer";
@@ -48,6 +47,11 @@ export interface RootState {
   app: AppInitialStateType;
 }
 
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<any>>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<unknown>
+>;
 
 export default store;

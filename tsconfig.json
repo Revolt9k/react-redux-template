@@ -18,6 +18,7 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
       "components/*": ["src/components/*"],
       "reducers/*": ["src/store/reducers/*"],

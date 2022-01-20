@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require("webpack");
 const path = require("path");
@@ -6,14 +5,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const RobotstxtPlugin = require("robotstxt-webpack-plugin");
-const ReactRefreshTypeScript = require("react-refresh-typescript");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-
+const dotenv = require("dotenv");
+const Dotenv = require("dotenv-webpack");
 // enable this for analyze
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const isDevelopment = process.env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV !== "production";
+const envConfig = dotenv.config().parsed;
 
 module.exports = {
   mode: "development",
@@ -34,15 +32,7 @@ module.exports = {
     rules: [
       {
         test: /fonts[\\/].*\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              outputPath: "fonts/"
-            }
-          }
-        ]
+        type: "asset/resource"
       },
       {
         test: /\.svg$/,
@@ -56,19 +46,10 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: require.resolve("ts-loader"),
-            // disable options (comment lines 61-69) when production
-            options: {
-              getCustomTransformers: () => ({
-                before: isDevelopment ? [ReactRefreshTypeScript()] : []
-              }),
-              // `ts-loader` does not work with HMR unless `transpileOnly` is used.
-              // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
-              transpileOnly: isDevelopment
-            }
+            loader: require.resolve("ts-loader")
           }
         ],
-        exclude: "/node_modules/"
+        exclude: /node_modules/
       },
       {
         test: /\.css$/i,
@@ -78,13 +59,22 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { sourceMap: true } },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: {
+                // auto flag allows use readable classnames with HMR
+                auto: true,
+                localIdentName: isDev ? "[path]_[name]_[local]" : "[contenthash]"
+              }
+            }
+          },
           {
             loader: "sass-loader",
             options: {
               sourceMap: true,
-              implementation: require("sass"),
-              prependData: `@import "./src/Variables.scss";` // For scss modules
+              implementation: require("sass")
             }
           }
         ]
@@ -104,12 +94,15 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: "./public",
-    port: 3000,
-    writeToDisk: true,
+    static: "./public",
+    port: envConfig.PORT ?? 3000,
+    host: envConfig.HOST ?? "localhost",
     historyApiFallback: true,
-    watchContentBase: true,
-    hotOnly: true
+    compress: true,
+    allowedHosts: "all",
+    client: {
+      overlay: false
+    }
   },
   output: {
     filename: "[name]-[contenthash].js",
@@ -126,9 +119,7 @@ module.exports = {
         parallel: true,
         extractComments: true
       }),
-      new CssMinimizerPlugin({
-        sourceMap: true
-      })
+      new CssMinimizerPlugin()
     ],
     splitChunks: {
       chunks: "async",
@@ -158,26 +149,11 @@ module.exports = {
       template: path.join(__dirname, "public", "index.html"),
       favicon: "./src/image/fav.png"
     }),
-    new MiniCssExtractPlugin({
-      filename: "[name]-[contenthash].css",
-      chunkFilename: "[name]-[contenthash].css",
-      insert: (linkTag) => {
-        const preloadLinkTag = document.createElement("link");
-        preloadLinkTag.rel = "preload";
-        preloadLinkTag.as = "style";
-        preloadLinkTag.href = linkTag.href;
-        document.head.appendChild(preloadLinkTag);
-        document.head.appendChild(linkTag);
-      }
-    }),
-    new RobotstxtPlugin({
-      fliePath: "./robots.txt"
-    }),
+    new MiniCssExtractPlugin(),
     new webpack.ProvidePlugin({
       process: "process/browser"
     }),
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin()
+    new Dotenv()
     // enable this for analyze
     // new BundleAnalyzerPlugin(),
   ].filter(Boolean)

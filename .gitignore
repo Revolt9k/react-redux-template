@@ -4,3 +4,4 @@ public/dist
 yarn.lock
 
 .idea
+.env
