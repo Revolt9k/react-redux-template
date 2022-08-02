@@ -95,8 +95,8 @@ module.exports = {
   },
   devServer: {
     static: "./public",
-    port: envConfig.PORT ?? 3000,
-    host: envConfig.HOST ?? "localhost",
+    port: envConfig?.PORT ?? 3000,
+    host: envConfig?.HOST ?? "localhost",
     historyApiFallback: true,
     compress: true,
     allowedHosts: "all",
