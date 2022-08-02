@@ -1,7 +1,7 @@
 node_modules
 public/dist
 
-yarn.lock
+#yarn.lock
 
 .idea
 .env
